@@ -1,0 +1,24 @@
+{
+    "name": "lizhenning/apidocument",
+    "description": "apidocument create",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lzning",
+            "email": "254435828@qq.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Zning\\Apidocument\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Zning\\Apidocument\\ApiDocumentServiceProvider"
+            ]
+        }
+    }
+}
