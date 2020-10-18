@@ -11,4 +11,6 @@ return [
     'path'=>env('APP_URL'),
     //api接口前缀
     'only'=>'api',
+    //laravel版本
+    'laravel_version' => 8,
 ];
