@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>接口文档</title>
     <link rel="stylesheet" href="{{ asset('static/source/styles.css') }}">
+
     <script src="{{ asset('static/source/jquery.min.js') }}"></script>
+    <script src="{{ asset('static/source/layer/layer.js') }}"></script>
 
     <style>
         nav a {
@@ -96,15 +98,22 @@
                         <div class="text-2xl">{{ $vv['name'] }}</div>
                         <div class=""><span class="text-xs bg-red-500 text-white rounded-md py-1 px-2 ml-2">{{ $vv['method'] }}</span> </div>
                     </div>
-                    <div><span class="text-xl text-gray-800">{{ $vv['path'] }}</span> </div>
+                    <div>
+                        <span class="text-xl text-gray-800">{{ $vv['path'] }}</span>
+                        <button class="px-2 py-1 text-xs font-bold bg-green-600 text-white rounded border-none outline-none no-underline mock-api" apiId="{{ $vv['api_id'] }}">模拟请求</button>
+                    </div>
                 </div>
-                <div><span class="text-sm text-gray-700">更新日期：{{ $vv['date'] }}</span></div>
+
+
+                <div>
+                    <span class="text-sm text-gray-700">更新日期：{{ $vv['date'] }}</span>
+                </div>
 
 
                 @if(sizeof($vv['u']) != 0)
 
                     <div>
-                        <span class="text-lg border-l-4 border-blue-500 pl-2">REST 参数</span>
+                        <span class="text-lg border-l-4 border-blue-500 pl-2">Rest 参数</span>
                     </div>
 
                     <div class="mb-5">
@@ -176,7 +185,7 @@
                 @if(sizeof($vv['b']) != 0)
 
                     <div>
-                        <span class="text-lg border-l-4 border-blue-500 pl-2">BODY 请求参数</span>
+                        <span class="text-lg border-l-4 border-blue-500 pl-2">Body 请求参数</span>
                     </div>
 
                     <div class="mb-5">
@@ -268,22 +277,52 @@
 
 
 <script>
-    /*锚点动效*/
-    $('a[href*=#],area[href*=#]').click(function() {
 
-        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-            var $target = $(this.hash);
-            $target = $target.length && $target || $('[id=' + this.hash.slice(1) + ']');
-            if ($target.length) {
-                var targetOffset = $target.offset().top;
-                $('html,body').animate({
-                        scrollTop: targetOffset
-                    },
-                    400);
-                return false;
+    $(document).ready(function(){
+
+        $('a[href*=#],area[href*=#]').click(function() {
+
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                var $target = $(this.hash);
+                $target = $target.length && $target || $('[id=' + this.hash.slice(1) + ']');
+                if ($target.length) {
+                    var targetOffset = $target.offset().top;
+                    $('html,body').animate({
+                            scrollTop: targetOffset
+                        },
+                        400);
+                    return false;
+                }
             }
-        }
+        });
+
+
+        let url = "{{ route('docapi.show') }}";
+
+        $('button.mock-api').click(function () {
+
+            let apiId = $(this).attr("apiId");
+            //iframe窗
+            layer.open({
+                type: 2,
+                title: 'API调试工具',
+                offset: 'rt',
+                shadeClose: true,
+                shade: 0.3,
+                maxmin: false, //开启最大化最小化按钮
+                area: ['50%', '100%'],
+                content: url+"?api="+apiId,
+            });
+
+
+        });
+
+
+
+
     });
+
+
 </script>
 
 </body>
