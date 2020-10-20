@@ -20,6 +20,9 @@
 <div>
     <form class="px-3" id="tf">
 
+        <input type="hidden" name="zning-url" value="{{ $data['path'] }}">
+        <input type="hidden" name="zning-method" value="{{ $data['method'] }}">
+
         <div class="flex justify-between h-12 items-center">
             <div class="flex items-center">
                 <div class="text-lg">{{ $data['name'] }}</div>
@@ -53,7 +56,7 @@
                         <tr>
                             <td class="border px-4 py-2 text-sm">{{ $i['name'] }}</td>
                             <td class="border px-4 py-2 text-sm">
-                                <input class="block w-full border rounded py-2 px-3 text-sm text-gray-700" type="text" autocomplete="off" name="{{ $i['name'] }}"/>
+                                <input class="block w-full border rounded py-2 px-3 text-sm text-gray-700" type="text" autocomplete="off" name="zning-u-{{ $i['name'] }}"/>
                             </td>
 
                         </tr>
@@ -88,7 +91,7 @@
                         <tr>
                             <td class="border px-4 py-2  text-sm">{{ $i['name'] }}</td>
                             <td class="border px-4 py-2 text-sm">
-                                <input class="block w-full border rounded py-2 px-3 text-sm text-gray-700" type="text" autocomplete="off" name="{{ $i['name'] }}"/>
+                                <input class="block w-full border rounded py-2 px-3 text-sm text-gray-700" type="text" autocomplete="off" name="zning-q-{{ $i['name'] }}"/>
                             </td>
                         </tr>
 
@@ -122,11 +125,11 @@
                             <td class="border px-4 py-2  text-sm">{{ $i['name'] }}</td>
                             <td class="border px-4 py-2 text-sm">
 
-                                @if($i['type'] == 'file')
+                                @if($i['type'] == '[file]')
 
-                                    <input class="block w-full border rounded py-2 px-3 text-sm text-gray-700" type="file" autocomplete="off" name="{{ $i['name'] }}"/>
+                                    <input class="block w-full border rounded py-2 px-3 text-sm text-gray-700" type="file" autocomplete="off" name="zning-b-f-{{ $i['name'] }}"/>
                                 @else
-                                    <input class="block w-full border rounded py-2 px-3 text-sm text-gray-700" type="text" autocomplete="off" name="{{ $i['name'] }}"/>
+                                    <input class="block w-full border rounded py-2 px-3 text-sm text-gray-700" type="text" autocomplete="off" name="zning-b-s-{{ $i['name'] }}"/>
                                 @endif
 
 
