@@ -138,7 +138,6 @@ class ApiDocumentController extends BaseController
 
         try {
 
-//            $_url = "http://47.92.197.253:9711/".$url;
             $_url = url($url);
 
             if (sizeof($query) != 0)
