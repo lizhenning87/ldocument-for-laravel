@@ -87,6 +87,8 @@ class ApiDocumentController extends BaseController
 
         $url = $request->input('zning-url', null);
         $method = $request->input('zning-method', null);
+        $token = $request->input('zning-token', null);
+
         if (!$url || !$method)
         {
             return new Response(['message' => '缺少请求信息', 'error' => 1], 400);
@@ -136,6 +138,13 @@ class ApiDocumentController extends BaseController
         $client = new Client();
         $response = null;
 
+        $header['Accept'] = 'application/json';
+
+        if ($token)
+        {
+            $header['Authorization'] = 'Bearer '.$token;
+        }
+
         try {
 
             $_url = url($url);
@@ -175,6 +184,7 @@ class ApiDocumentController extends BaseController
                     }
                 }
 
+                $post['headers'] = $header;
 
                 //Log::debug($post);
 
@@ -182,7 +192,9 @@ class ApiDocumentController extends BaseController
 
             }else
             {
-                $response = $client->request('get', $_url);
+                $response = $client->request('get', $_url, [
+                    'headers' => $header,
+                ]);
             }
 
             return new Response(json_decode($response->getBody()->getContents(), true), $response->getStatusCode());

@@ -9,7 +9,7 @@ if (config('doc.laravel_version') >= 8)
     Route::post('doc/api', [\Zning\Apidocument\controller\ApiDocumentController::class, 'api'])->name('docapi.api');
 }else
 {
-    Route::post('doc/api','Zning\Apidocument\controller\ApiDocumentController@api')->name('docapi.api');
+    Route::post('doc/req','Zning\Apidocument\controller\ApiDocumentController@api')->name('docapi.api');
     Route::get('doc/show','Zning\Apidocument\controller\ApiDocumentController@show')->name('docapi.show');
     Route::get('doc','Zning\Apidocument\controller\ApiDocumentController@index')->name('docapi.index');
 }

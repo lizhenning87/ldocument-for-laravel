@@ -33,6 +33,33 @@
             </div>
         </div>
 
+
+        <div>
+            <span class="text-sm border-l-4 border-blue-500 pl-2">Header 参数</span>
+        </div>
+
+        <div class="mb-5">
+            <table class="table-fixed w-full border-2 border-gray-100">
+                <thead>
+                <tr>
+                    <th class="w-2/12 px-4 py-2 text-sm">参数</th>
+                    <th class="w-10/12 px-4 py-2 text-sm">内容</th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td class="border px-4 py-2 text-sm">TOKEN</td>
+                    <td class="border px-4 py-2 text-sm">
+                        <input class="block w-full border rounded py-2 px-3 text-sm text-gray-700" type="text" autocomplete="off" name="zning-token" placeholder="仅在需要token时提交即可"/>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
         @if(sizeof($data['u']) != 0)
 
             <div>

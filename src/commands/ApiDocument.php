@@ -11,6 +11,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 use Closure;
+use Illuminate\Support\Str;
 use Zning\Apidocument\ControllerDocumentParser;
 
 class ApiDocument extends Command
@@ -114,7 +115,7 @@ class ApiDocument extends Command
 
         return collect($routes)->filter(function ($route) {
 
-            return strstr($route['uri'], config('doc.only'));
+            return Str::startsWith($route['uri'], config('doc.only'));
 
         })->map(function ($route) {
 
